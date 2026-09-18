@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useNotifications } from '../contexts/NotificationContext'
 
 export default function Layout({ children }) {
   const { user, logout } = useAuth()
+  const { unreadCount } = useNotifications()
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -24,6 +26,14 @@ export default function Layout({ children }) {
                   {user.role === 'admin' && (
                     <Link to="/admin/booths" className="hover:text-purple-200">摊位审核</Link>
                   )}
+                  <Link to="/notifications" className="relative hover:text-purple-200">
+                    🔔 提醒
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                        {unreadCount > 99 ? '99+' : unreadCount}
+                      </span>
+                    )}
+                  </Link>
                   <span className="text-purple-200">欢迎, {user.username}</span>
                   <button onClick={handleLogout} className="bg-white/20 px-4 py-2 rounded-lg hover:bg-white/30">
                     退出

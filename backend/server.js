@@ -20,6 +20,7 @@ app.use('/api/booths', require('./routes/booths'));
 app.use('/api/schedules', require('./routes/schedules'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/favorites', require('./routes/favorites'));
+app.use('/api/notifications', require('./routes/notifications'));
 
 app.get('/', (req, res) => {
   res.json({ message: '虚拟漫展策划工具 API' });

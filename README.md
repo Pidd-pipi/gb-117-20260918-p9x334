@@ -148,6 +148,12 @@ npm run dev
 - `POST /api/favorites` - 添加收藏
 - `DELETE /api/favorites/:boothId` - 取消收藏
 
+### 站内提醒
+- `GET /api/notifications` - 我的提醒列表（展会开始前48小时内自动为有收藏摊位的用户生成，同一展会仅一条）
+- `GET /api/notifications/unread-count` - 未读提醒数（导航角标）
+- `PUT /api/notifications/:id/read` - 标记单条已读
+- `PUT /api/notifications/read-all` - 全部标记已读
+
 ### 评价
 - `GET /api/reviews/booth/:boothId` - 摊位评价
 - `POST /api/reviews` - 提交评价
