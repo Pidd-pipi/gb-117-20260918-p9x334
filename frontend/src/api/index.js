@@ -57,3 +57,10 @@ export const reviewAPI = {
   getByBooth: (boothId) => api.get(`/reviews/booth/${boothId}`),
   create: (data) => api.post('/reviews', data),
 };
+
+export const notificationAPI = {
+  getAll: () => api.get('/notifications'),
+  getUnreadCount: () => api.get('/notifications/unread-count'),
+  markRead: (id) => api.put(`/notifications/${id}/read`),
+  markAllRead: () => api.put('/notifications/read-all'),
+};

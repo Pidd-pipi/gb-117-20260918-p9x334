@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-mongoose.connect('mongodb://localhost:27017/anime-expo')
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/anime-expo')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
@@ -20,6 +20,7 @@ app.use('/api/booths', require('./routes/booths'));
 app.use('/api/schedules', require('./routes/schedules'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/favorites', require('./routes/favorites'));
+app.use('/api/notifications', require('./routes/notifications'));
 
 app.get('/', (req, res) => {
   res.json({ message: '虚拟漫展策划工具 API' });
